@@ -85,8 +85,7 @@ export default function App() {
   };
 
   const generatePdf = async () => {
-
-    setPdfBase64({ uri: null, cache: true })
+    setPdfBase64({ uri: null, cache: true });
 
     try {
       const pdfDoc = await PDFDocument.create();
@@ -120,9 +119,13 @@ export default function App() {
   };
 
   const saveFile = async (pdfBase64) => {
-    const localPath = `${RNFS.DownloadDirectoryPath}/1.pdf`;
+    const localPath = `${RNFS.DownloadDirectoryPath}/4.pdf`;
 
-    await RNFS.writeFile(localPath, pdfBase64, "utf8")
+    await RNFS.writeFile(
+      localPath,
+      pdfBase64.replace(/^data:application\/pdf;base64,/, ""),
+      "base64"
+    )
       .then((response) => console.log("salvo"))
       .catch((err) => console.error(err));
     // write the file

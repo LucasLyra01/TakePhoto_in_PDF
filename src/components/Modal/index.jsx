@@ -13,7 +13,6 @@ const ModalImage = (children) => {
       transparent={true}
       visible={showModal}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
         setShowModal(!showModal);
       }}
     >
